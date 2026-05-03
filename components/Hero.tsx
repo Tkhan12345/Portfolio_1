@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const roles = [
   "Building scalable web apps with React & Next.js",
   "Cloud & DevOps Intern",
-  "Aspiring Specialist Programmer (21 LPA Track)",
+  "Aspiring Specialist Programmer",
 ];
 
 export default function Hero() {
@@ -40,14 +40,24 @@ export default function Hero() {
   }, [j, deleting, i]);
 
   return (
-   <section id="home" className="h-screen flex flex-col justify-center items-center text-center pt-20">
-      <h1 className="text-5xl font-bold">
-        I am <span className="text-blue-600">{text}</span>
+    <section
+      id="home"
+      className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20"
+    >
+      <p className="mb-5 px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-white/5 text-sm text-blue-600 dark:text-blue-400 font-medium">
+        Full-Stack Developer • Cloud & DevOps Intern
+      </p>
+
+      <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+        I am{" "}
+        <span className="text-blue-600 dark:text-blue-400">{text}</span>
       </h1>
 
-     <p className="mt-4 text-gray-500 max-w-xl">
-  Computer Science student with real-world experience in frontend development, cloud, and customer-facing systems.
-</p>
+      <p className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl text-lg leading-relaxed">
+        Computer Science student with real-world experience in frontend
+        development, cloud infrastructure, DevOps workflows, and customer-facing
+        systems.
+      </p>
     </section>
   );
 }
