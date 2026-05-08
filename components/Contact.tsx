@@ -73,13 +73,13 @@ export default function Contact() {
                 className="group relative overflow-hidden rounded-full bg-cyan-400 px-8 py-4 text-center font-black text-black shadow-xl shadow-cyan-500/20 transition hover:-translate-y-1 hover:bg-cyan-300 hover:shadow-cyan-500/30"
               >
                 <span className="relative z-10">Email Me</span>
-
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition duration-700 group-hover:translate-x-full" />
               </a>
 
               <a
                 href="/resume.pdf"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full border border-white/10 bg-white/[0.05] px-8 py-4 text-center font-bold text-white backdrop-blur-xl transition hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-300"
               >
                 View Resume
@@ -92,6 +92,7 @@ export default function Contact() {
                   key={item.name}
                   href={item.href}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-sm font-semibold text-gray-300 transition hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-300"
                 >
                   {item.name}
@@ -101,7 +102,7 @@ export default function Contact() {
           </div>
 
           {/* Right Contact Card */}
-          <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-cyan-400/30 hover:shadow-cyan-500/20">
+          <div className="premium-card premium-card-hover group relative overflow-hidden rounded-[2rem] p-6">
             <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-cyan-500/20 blur-3xl transition group-hover:bg-cyan-500/30" />
 
             <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-purple-500/20 blur-3xl transition group-hover:bg-purple-500/30" />
@@ -112,9 +113,7 @@ export default function Contact() {
               <span className="h-3 w-3 rounded-full bg-yellow-400" />
               <span className="h-3 w-3 rounded-full bg-green-400" />
 
-              <p className="ml-3 text-sm text-gray-400">
-                contact.json
-              </p>
+              <p className="ml-3 text-sm text-gray-400">contact.json</p>
             </div>
 
             <div className="relative z-10 space-y-4">
@@ -123,9 +122,7 @@ export default function Contact() {
                   key={card.label}
                   className="rounded-2xl border border-white/10 bg-black/30 p-5 transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-cyan-400/5"
                 >
-                  <p className="text-sm text-gray-500">
-                    {card.label}
-                  </p>
+                  <p className="text-sm text-gray-500">{card.label}</p>
 
                   <p className="mt-1 break-all text-lg font-bold text-white">
                     {card.value}
@@ -134,9 +131,7 @@ export default function Contact() {
               ))}
 
               <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-5 shadow-lg shadow-cyan-500/10">
-                <p className="text-sm font-medium text-cyan-300">
-                  Status
-                </p>
+                <p className="text-sm font-medium text-cyan-300">Status</p>
 
                 <p className="mt-1 text-lg font-black text-white">
                   Open to internships & fresher roles
@@ -144,9 +139,7 @@ export default function Contact() {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-black/30 p-5">
-                <p className="text-sm text-gray-500">
-                  Response
-                </p>
+                <p className="text-sm text-gray-500">Response</p>
 
                 <p className="mt-1 text-lg font-bold text-white">
                   Usually available for project discussions

@@ -29,7 +29,21 @@ const socials = [
   },
 ];
 
+
+
 export default function Footer() {
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const top = section.getBoundingClientRect().top + window.scrollY - 92;
+
+    window.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-black/80 px-6 py-16 backdrop-blur-2xl">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
@@ -40,26 +54,29 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-black text-white">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-left text-2xl font-black text-white transition hover:scale-[1.02]"
+            >
               Tufail
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
                 {" "}
                 Khan
               </span>
-            </h3>
+            </button>
 
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-gray-400">
               Full-stack developer focused on building scalable web apps,
               cloud-ready systems, and practical software products.
             </p>
 
-            <a
-              href="#contact"
+            <button
+              onClick={() => scrollToSection("contact")}
               className="group relative mt-6 inline-flex overflow-hidden rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-black text-black shadow-lg shadow-cyan-500/20 transition hover:-translate-y-1 hover:bg-cyan-300"
             >
               <span className="relative z-10">Let’s Work Together →</span>
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition duration-700 group-hover:translate-x-full" />
-            </a>
+            </button>
           </div>
 
           {/* Links */}
@@ -67,15 +84,19 @@ export default function Footer() {
             <h4 className="mb-5 font-bold text-white">Quick Links</h4>
 
             <div className="grid max-w-xs grid-cols-2 gap-3 text-sm text-gray-400">
-              {quickLinks.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="transition hover:translate-x-1 hover:text-cyan-300"
-                >
-                  {item}
-                </a>
-              ))}
+              {quickLinks.map((item) => {
+                const id = item.toLowerCase();
+
+                return (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(id)}
+                    className="w-fit text-left transition hover:translate-x-1 hover:text-cyan-300"
+                  >
+                    {item}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -88,8 +109,14 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  target={social.href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={social.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  target={
+                    social.href.startsWith("mailto:") ? undefined : "_blank"
+                  }
+                  rel={
+                    social.href.startsWith("mailto:")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
                   className="group flex w-fit items-center gap-3 transition hover:text-cyan-300"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] transition group-hover:-translate-y-1 group-hover:border-cyan-400/40 group-hover:bg-cyan-400/10">
@@ -102,7 +129,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-gray-500 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-center text-sm text-gray-500 md:flex-row md:text-left">
           <p>© 2026 Tufail Khan. All rights reserved.</p>
           <p>Built with Next.js, Tailwind CSS & TypeScript.</p>
         </div>

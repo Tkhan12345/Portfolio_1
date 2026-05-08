@@ -63,6 +63,8 @@ function CertificationCard({
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth < 768) return;
+
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
 
@@ -72,8 +74,8 @@ function CertificationCard({
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
 
     setRotate({ x: rotateX, y: rotateY });
   };
@@ -95,15 +97,15 @@ function CertificationCard({
         style={{
           transform: `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
         }}
-        className="relative h-full rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl transition-all duration-200 ease-out [transform-style:preserve-3d] hover:border-cyan-400/40 hover:bg-white/[0.08] hover:shadow-2xl hover:shadow-cyan-500/20 overflow-hidden"
+        className="premium-card premium-card-hover relative h-full overflow-hidden rounded-3xl p-7 transition-all duration-200 ease-out [transform-style:preserve-3d]"
       >
-        {/* Animated Glow */}
+        {/* Glow */}
         <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-cyan-400/20 via-transparent to-blue-500/20 opacity-0 blur-xl transition duration-500 group-hover:opacity-100" />
 
-        {/* Shine Effect */}
+        {/* Shine */}
         <div className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition duration-700 group-hover:translate-x-[120%]" />
 
-        <div className="relative z-10 [transform:translateZ(40px)]">
+        <div className="relative z-10 [transform:translateZ(30px)]">
           {/* Top */}
           <div className="mb-6 flex items-center justify-between">
             <span className="rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300">
@@ -116,12 +118,14 @@ function CertificationCard({
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-semibold text-white transition group-hover:text-cyan-300">
+          <h3 className="text-xl font-semibold text-white transition duration-300 group-hover:text-cyan-300">
             {cert.title}
           </h3>
 
           {/* Issuer */}
-          <p className="mt-2 text-sm text-cyan-400">{cert.issuer}</p>
+          <p className="mt-2 text-sm font-medium text-cyan-400">
+            {cert.issuer}
+          </p>
 
           {/* Detail */}
           <p className="mt-5 text-sm leading-relaxed text-gray-400">
@@ -144,32 +148,37 @@ export default function Certifications() {
     >
       {/* Background Glow */}
       <div className="pointer-events-none absolute right-0 top-1/3 h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-[120px]" />
-      <div className="pointer-events-none absolute left-0 bottom-10 h-[350px] w-[350px] rounded-full bg-blue-500/10 blur-[120px]" />
+
+      <div className="pointer-events-none absolute bottom-10 left-0 h-[350px] w-[350px] rounded-full bg-blue-500/10 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-16 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.25em] text-cyan-400">
+        <div className="reveal mb-20 text-center">
+          <p className="section-label mb-4">
             Learning & Credentials
           </p>
 
-          <h2 className="text-4xl font-bold text-white md:text-5xl">
+          <h2 className="gradient-text text-4xl font-bold md:text-5xl">
             Certifications
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-gray-400">
             Certifications and learning experiences strengthening my foundation
             in cloud computing, software engineering, data analysis, and modern
             development workflows.
           </p>
 
-          <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-cyan-400" />
+          <div className="glow-line mx-auto mt-6" />
         </div>
 
         {/* Cards */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, index) => (
-            <CertificationCard key={index} cert={cert} index={index} />
+            <CertificationCard
+              key={index}
+              cert={cert}
+              index={index}
+            />
           ))}
         </div>
       </div>

@@ -7,47 +7,39 @@ export default function Publications() {
 
   return (
     <section id="publications" className="relative overflow-hidden px-6 py-28">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
         <div className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-purple-500/10 blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
-            Research & Publication
-          </p>
+        <div className="reveal mb-20 text-center">
+          <p className="section-label mb-4">Research & Publication</p>
 
-          <h2 className="text-4xl font-black tracking-tight text-white md:text-5xl">
+          <h2 className="gradient-text text-4xl font-bold md:text-5xl">
             Publications
           </h2>
 
-          <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-blue-400 to-purple-500" />
-
-          <p className="mx-auto mt-5 max-w-2xl text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-gray-400">
             Academic work focused on building practical technology solutions
             with real-world application.
           </p>
+
+          <div className="glow-line mx-auto mt-6" />
         </div>
 
-        {/* Publication Card */}
         <div
           ref={revealRef}
-          className="fade-up group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-blue-500/10 backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-blue-400/30 hover:shadow-blue-500/20 md:p-10"
+          className="fade-up premium-card premium-card-hover group relative overflow-hidden rounded-[2rem] p-6 md:p-10"
         >
-          {/* Glow */}
-          <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-600/20 blur-3xl transition duration-500 group-hover:bg-blue-500/30" />
+          <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-600/20 blur-3xl transition duration-500 group-hover:bg-cyan-500/30" />
           <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-purple-600/20 blur-3xl transition duration-500 group-hover:bg-purple-500/30" />
 
-          {/* Shine */}
           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition duration-1000 group-hover:translate-x-full" />
 
           <div className="relative z-10 grid gap-10 md:grid-cols-[1.35fr_0.65fr] md:items-center">
-            {/* Left */}
             <div>
-              <span className="inline-flex rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-300">
+              <span className="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-300">
                 Accepted for Publication
               </span>
 
@@ -56,7 +48,7 @@ export default function Publications() {
                 Website
               </h3>
 
-              <p className="mt-5 max-w-3xl text-gray-400 leading-relaxed">
+              <p className="mt-5 max-w-3xl leading-relaxed text-gray-400">
                 Research paper based on UniKart, a campus-focused e-commerce
                 platform designed to help students access products, services,
                 and campus utilities through a centralized digital system.
@@ -70,7 +62,7 @@ export default function Publications() {
                 ].map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-medium text-gray-300 transition hover:border-blue-400/30 hover:bg-blue-400/10 hover:text-blue-300"
+                    className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-medium text-gray-300 transition hover:border-cyan-400/30 hover:bg-cyan-400/10 hover:text-cyan-300"
                   >
                     {item}
                   </span>
@@ -96,9 +88,8 @@ export default function Publications() {
               </div>
             </div>
 
-            {/* Right */}
-            <div className="relative rounded-[1.7rem] border border-white/10 bg-black/30 p-6 text-center transition duration-500 group-hover:border-blue-400/30 group-hover:bg-blue-400/5">
-              <div className="float-slow mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl border border-blue-400/20 bg-blue-400/10 text-4xl shadow-lg shadow-blue-500/10">
+            <div className="relative rounded-[1.7rem] border border-white/10 bg-black/30 p-6 text-center transition duration-500 group-hover:border-cyan-400/30 group-hover:bg-cyan-400/5">
+              <div className="float-slow mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl border border-cyan-400/20 bg-cyan-400/10 text-4xl shadow-lg shadow-cyan-500/10">
                 📄
               </div>
 
@@ -111,8 +102,8 @@ export default function Publications() {
                 Innovation in Computing and Engineering.
               </p>
 
-              <div className="mt-6 rounded-2xl border border-blue-500/20 bg-blue-600/10 px-4 py-3">
-                <p className="text-sm font-semibold text-blue-300">
+              <div className="mt-6 rounded-2xl border border-cyan-500/20 bg-cyan-600/10 px-4 py-3">
+                <p className="text-sm font-semibold text-cyan-300">
                   Published / Accepted Work
                 </p>
               </div>
