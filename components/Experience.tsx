@@ -40,30 +40,29 @@ export default function Experience() {
   return (
     <section id="experience" className="relative overflow-hidden px-6 py-28">
       <div className="pointer-events-none absolute left-0 top-1/3 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="pointer-events-none absolute right-0 bottom-20 h-[360px] w-[360px] rounded-full bg-blue-500/10 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-5xl">
         <div className="reveal mb-20 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.25em] text-cyan-400">
-            Career Journey
-          </p>
+          <p className="section-label mb-4">Career Journey</p>
 
-          <h2 className="text-4xl font-bold text-white md:text-5xl">
+          <h2 className="gradient-text text-4xl font-bold md:text-5xl">
             Experience
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-gray-400">
+          <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-gray-400">
             Professional experience, technical exposure, and hands-on project
             development shaping my journey as a software engineer.
           </p>
 
-          <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-cyan-400" />
+          <div className="glow-line mx-auto mt-6" />
         </div>
 
         <div className="relative ml-3 border-l border-white/10">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`reveal relative mb-16 ml-8 ${
+              className={`reveal relative mb-16 ml-8 last:mb-0 ${
                 index === 1
                   ? "reveal-delay-1"
                   : index === 2
@@ -71,22 +70,26 @@ export default function Experience() {
                   : ""
               }`}
             >
-              <div className="absolute -left-[42px] top-1 h-5 w-5 rounded-full border-4 border-black bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.6)]" />
+              <div className="absolute -left-[42px] top-2 h-5 w-5 rounded-full border-4 border-black bg-cyan-400 shadow-[0_0_24px_rgba(34,211,238,0.75)]" />
 
-              <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/30 hover:bg-white/[0.08] hover:shadow-2xl hover:shadow-cyan-500/10">
+              <div className="premium-card premium-card-hover group relative overflow-hidden rounded-3xl p-7">
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 opacity-0 transition duration-500 group-hover:opacity-100" />
+
+                <div className="absolute inset-0 translate-x-[-130%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition duration-1000 group-hover:translate-x-[130%]" />
 
                 <div className="relative z-10">
                   <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <div>
-                      <h3 className="text-2xl font-semibold text-white transition group-hover:text-cyan-300">
+                      <h3 className="text-2xl font-semibold text-white transition duration-300 group-hover:text-cyan-300">
                         {exp.role}
                       </h3>
 
-                      <p className="mt-1 text-cyan-300">{exp.company}</p>
+                      <p className="mt-1 font-medium text-cyan-300">
+                        {exp.company}
+                      </p>
                     </div>
 
-                    <span className="w-fit rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-400">
+                    <span className="w-fit rounded-full border border-cyan-400/15 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-200">
                       {exp.period}
                     </span>
                   </div>
@@ -103,6 +106,8 @@ export default function Experience() {
                     ))}
                   </ul>
                 </div>
+
+                <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
               </div>
             </div>
           ))}
