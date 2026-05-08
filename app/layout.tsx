@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PageLoader from "@/components/PageLoader";
 import Navbar from "@/components/Navbar";
+import CursorGlow from "@/components/CursorGlow";
 
 export const metadata: Metadata = {
   title: "Tufail Khan | Portfolio",
-  description: "Full-Stack Developer | Cloud & DevOps Intern",
+  description: "Personal portfolio of Tufail Khan",
 };
 
 export default function RootLayout({
@@ -15,6 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
+        <PageLoader />
+        <CursorGlow />
         <Navbar />
         {children}
       </body>

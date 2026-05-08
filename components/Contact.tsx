@@ -1,107 +1,158 @@
 "use client";
 
-export default function Contact() {
-  return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur-xl shadow-xl">
-          
-          {/* Background Glow */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
+import useReveal from "@/hooks/useReveal";
 
-          <div className="relative z-10 px-6 py-16 md:px-14 text-center">
-            
-            <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
+const contactCards = [
+  {
+    label: "Location",
+    value: "Pune, India",
+  },
+  {
+    label: "Email",
+    value: "tufelkhandz@gmail.com",
+  },
+  {
+    label: "Focus",
+    value: "Full-Stack / Cloud",
+  },
+];
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    href: "https://github.com/Tkhan12345",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/tufail-khan-308581275/",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/__tufelkhan/",
+  },
+];
+
+export default function Contact() {
+  const revealRef = useReveal<HTMLDivElement>();
+
+  return (
+    <section id="contact" className="relative overflow-hidden px-6 py-32">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-20 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-purple-500/10 blur-3xl" />
+      </div>
+
+      <div className="mx-auto max-w-6xl">
+        <div
+          ref={revealRef}
+          className="fade-up grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]"
+        >
+          {/* Left Content */}
+          <div>
+            <p className="mb-5 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300 shadow-lg shadow-cyan-500/10">
               Available for opportunities
             </p>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight">
-              Let’s Build Something
-              <span className="text-blue-600"> Meaningful</span>
+            <h2 className="text-4xl font-black tracking-tight text-white md:text-6xl">
+              Let’s build
+              <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+                something meaningful.
+              </span>
             </h2>
 
-            <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 text-lg mb-10 leading-relaxed">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-gray-400 md:text-lg">
               I’m open to internships, fresher roles, freelance projects, and
-              collaborations in full-stack development, cloud, and DevOps.
-              Feel free to reach out.
+              collaborations in full-stack development, cloud, and DevOps. Feel
+              free to reach out.
             </p>
 
-            {/* Main Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
                 href="mailto:tufelkhandz@gmail.com"
-                className="px-8 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 transition"
+                className="group relative overflow-hidden rounded-full bg-cyan-400 px-8 py-4 text-center font-black text-black shadow-xl shadow-cyan-500/20 transition hover:-translate-y-1 hover:bg-cyan-300 hover:shadow-cyan-500/30"
               >
-                Email Me
+                <span className="relative z-10">Email Me</span>
+
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition duration-700 group-hover:translate-x-full" />
               </a>
 
               <a
                 href="/resume.pdf"
                 target="_blank"
-                className="px-8 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-100 dark:hover:bg-white/10 hover:scale-105 transition"
+                className="rounded-full border border-white/10 bg-white/[0.05] px-8 py-4 text-center font-bold text-white backdrop-blur-xl transition hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-300"
               >
                 View Resume
               </a>
             </div>
 
-            {/* Contact Info */}
-            <div className="grid sm:grid-cols-3 gap-4 mb-10">
-              <div className="rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-5">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Location
+            <div className="mt-10 flex flex-wrap gap-3">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  className="rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-sm font-semibold text-gray-300 transition hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-300"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Contact Card */}
+          <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-cyan-400/30 hover:shadow-cyan-500/20">
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-cyan-500/20 blur-3xl transition group-hover:bg-cyan-500/30" />
+
+            <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-purple-500/20 blur-3xl transition group-hover:bg-purple-500/30" />
+
+            {/* Terminal Header */}
+            <div className="relative z-10 mb-6 flex items-center gap-2 border-b border-white/10 pb-4">
+              <span className="h-3 w-3 rounded-full bg-red-400" />
+              <span className="h-3 w-3 rounded-full bg-yellow-400" />
+              <span className="h-3 w-3 rounded-full bg-green-400" />
+
+              <p className="ml-3 text-sm text-gray-400">
+                contact.json
+              </p>
+            </div>
+
+            <div className="relative z-10 space-y-4">
+              {contactCards.map((card) => (
+                <div
+                  key={card.label}
+                  className="rounded-2xl border border-white/10 bg-black/30 p-5 transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-cyan-400/5"
+                >
+                  <p className="text-sm text-gray-500">
+                    {card.label}
+                  </p>
+
+                  <p className="mt-1 break-all text-lg font-bold text-white">
+                    {card.value}
+                  </p>
+                </div>
+              ))}
+
+              <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-5 shadow-lg shadow-cyan-500/10">
+                <p className="text-sm font-medium text-cyan-300">
+                  Status
                 </p>
-                <p className="font-semibold text-gray-900 dark:text-white">
-                  Pune, India
+
+                <p className="mt-1 text-lg font-black text-white">
+                  Open to internships & fresher roles
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-5">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Email
+              <div className="rounded-2xl border border-white/10 bg-black/30 p-5">
+                <p className="text-sm text-gray-500">
+                  Response
                 </p>
-                <p className="font-semibold text-gray-900 dark:text-white break-all">
-                  tufelkhandz@gmail.com
-                </p>
-              </div>
 
-              <div className="rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-5">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Interest
-                </p>
-                <p className="font-semibold text-gray-900 dark:text-white">
-                  Full-Stack / Cloud
+                <p className="mt-1 text-lg font-bold text-white">
+                  Usually available for project discussions
                 </p>
               </div>
             </div>
-
-            {/* Social Links */}
-            <div className="flex justify-center gap-4 flex-wrap">
-              <a
-                href="https://github.com/Tkhan12345"
-                target="_blank"
-                className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition"
-              >
-                GitHub
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/tufail-khan-308581275/"
-                target="_blank"
-                className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition"
-              >
-                LinkedIn
-              </a>
-
-              <a
-                href="https://www.instagram.com/__tufelkhan/"
-                target="_blank"
-                className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-blue-600 dark:hover:text-blue-400 transition"
-              >
-                Instagram
-              </a>
-            </div>
-
           </div>
         </div>
       </div>
