@@ -1,102 +1,167 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "#home", id: "home" },
+  { name: "About", href: "#about", id: "about" },
+  { name: "Skills", href: "#skills", id: "skills" },
+  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "Projects", href: "#projects", id: "projects" },
+  { name: "Certifications", href: "#certifications", id: "certifications" },
+  { name: "Publications", href: "#publications", id: "publications" },
+  { name: "Contact", href: "#contact", id: "contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
-  // useEffect(() => {
-  //   document.documentElement.classList.add("dark");
-  //   localStorage.setItem("theme", "dark");
-  // }, []);
+const scrollToSection = (id: string) => {
+  const section = document.getElementById(id);
+  if (!section) return;
 
- return (
-  <nav className="fixed top-0 w-full z-50">
-    {/* Glow line */}
-    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
+  const navbarOffset = id === "home" ? 0 : -10;
 
-    <div className="mx-auto mt-4 max-w-6xl px-6">
-      <div className="flex items-center justify-between rounded-full border border-white/10 bg-black/70 px-5 py-3 shadow-2xl shadow-blue-500/10 backdrop-blur-2xl">
-        
-        {/* Logo */}
-        <a
-          href="#home"
-          className="group text-lg font-bold tracking-tight text-white"
+  const top =
+    section.getBoundingClientRect().top + window.scrollY - navbarOffset;
+
+  window.scrollTo({
+    top,
+    behavior: "smooth",
+  });
+};
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      const currentSection = navLinks.find((link) => {
+        const section = document.getElementById(link.id);
+        if (!section) return false;
+
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 150 && rect.bottom >= 150;
+      });
+
+      if (currentSection) setActiveSection(currentSection.id);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <nav className="fixed top-0 z-50 w-full px-4 sm:px-6">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
+
+      <div className="mx-auto mt-3">
+        <div
+          className={`mx-auto flex items-center justify-between rounded-full border border-white/10 bg-black/70 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl transition-all duration-300 ${
+            scrolled ? "max-w-5xl px-4 py-2" : "max-w-7xl px-5 py-3"
+          }`}
         >
-          Tufail
-          <span className="text-blue-500 group-hover:text-blue-400 transition">
-            {" "}Khan
-          </span>
-        </a>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-2 text-sm font-medium text-gray-300">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="rounded-full px-4 py-2 hover:bg-white/10 hover:text-white transition"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-
-        {/* Resume Button */}
-        <div className="hidden md:block">
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            className="rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-500 hover:scale-105 transition"
+          <button
+            onClick={() => scrollToSection("home")}
+            className="group whitespace-nowrap text-left text-lg font-black tracking-tight text-white"
           >
-            Resume
-          </a>
-        </div>
+            Tufail
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+              _Khan
+            </span>
+          </button>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10 transition"
-        >
-          {open ? "✕" : "☰"}
-        </button>
-      </div>
+          <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1 text-sm font-semibold text-gray-300 lg:flex">
+            {navLinks.map((link) => {
+              const active = activeSection === link.id;
 
-      {/* Mobile Dropdown */}
-      {open && (
-        <div className="mt-3 rounded-3xl border border-white/10 bg-black/90 p-4 shadow-2xl shadow-blue-500/10 backdrop-blur-2xl md:hidden">
-          <div className="flex flex-col gap-2 text-gray-300">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 hover:bg-white/10 hover:text-white transition"
-              >
-                {link.name}
-              </a>
-            ))}
+              return (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`relative rounded-full px-3 py-2 transition-all duration-300 ${
+                    active
+                      ? "bg-cyan-400 text-black shadow-lg shadow-cyan-500/25"
+                      : "hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                </button>
+              );
+            })}
+          </div>
 
+          <div className="hidden lg:block">
             <a
               href="/resume.pdf"
               target="_blank"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-2xl bg-blue-600 px-4 py-3 text-center font-semibold text-white hover:bg-blue-500 transition"
+              className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2 text-sm font-bold text-cyan-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cyan-400 hover:text-black"
             >
-              View Resume
+              Resume
             </a>
           </div>
+
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xl text-white transition hover:border-cyan-400/30 hover:bg-cyan-400/10 lg:hidden"
+          >
+            {open ? "×" : "☰"}
+          </button>
         </div>
-      )}
-    </div>
-  </nav>
-);
+
+        <div
+          className={`overflow-hidden transition-all duration-300 lg:hidden ${
+            open ? "mt-3 max-h-[650px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="rounded-[2rem] border border-white/10 bg-black/95 p-5 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl">
+            <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
+                Menu
+              </p>
+              <p className="text-xs text-gray-500">Portfolio</p>
+            </div>
+
+            <div className="grid gap-2">
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`rounded-2xl px-4 py-3 text-left text-base font-bold transition ${
+                    activeSection === link.id
+                      ? "bg-cyan-400 text-black"
+                      : "text-gray-300 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                </button>
+              ))}
+
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                onClick={() => setOpen(false)}
+                className="mt-3 rounded-2xl bg-cyan-400 px-4 py-3 text-center font-black text-black transition hover:bg-cyan-300"
+              >
+                View Resume
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 }
