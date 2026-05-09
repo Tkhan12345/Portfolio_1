@@ -99,15 +99,15 @@ export const projects = [
   //   live: "#",
   // },
 
-  {
-    title: "Property Trend Analysis",
-    description:
-      "Analyzed real estate datasets using Python to identify pricing trends and regional patterns, then presented insights through visual analysis.",
-    image: "/projects/trend.jpeg",
-    tech: ["Python", "Pandas", "Matplotlib", "Jupyter"],
-    github: "https://github.com/Tkhan12345",
-    live: "#",
-  },
+  // {
+  //   title: "Property Trend Analysis",
+  //   description:
+  //     "Analyzed real estate datasets using Python to identify pricing trends and regional patterns, then presented insights through visual analysis.",
+  //   image: "/projects/trend.jpeg",
+  //   tech: ["Python", "Pandas", "Matplotlib", "Jupyter"],
+  //   github: "https://github.com/Tkhan12345",
+  //   live: "#",
+  // },
 
   // {
   //   title: "Personal Portfolio Website",
